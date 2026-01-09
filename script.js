@@ -119,12 +119,12 @@ function setupShareButtons() {
                 document.execCommand('copy');
                 const btn = document.getElementById('copy-link');
                 const originalText = btn.textContent;
-                btn.textContent = 'Imenakiliwa!';
+                btn.textContent = 'Copied!';
                 setTimeout(() => {
                     btn.textContent = originalText;
                 }, 2000);
             } catch (err) {
-                alert('Haiwezekani kunakili kiungo. Tafadhali nakili mwenyewe.');
+                alert('Not Copied. Please Copy!.');
             }
             document.body.removeChild(textArea);
         }
