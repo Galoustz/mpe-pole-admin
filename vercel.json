@@ -19,6 +19,14 @@
       "src": "/",
       "dest": "/index.html"
     }
+    {
+      "src": "/",
+      "dest": "/script.js"
+    }
+    {
+      "src": "/",
+      "dest": "/style.css"
+    }
   ]
 }
 
