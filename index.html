@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mchango wa pole">
+    <title>MPE POLE ADMIN</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MPE POLE ADMIN</h1>
+            <p class="subtitle">Tuko pamoja katika kipindi hiki kigumu</p>
+        </header>
+
+        <main>
+            <div id="contribution-section" class="contribution-section">
+                <h2>Chagua Kiasi</h2>
+                <div class="amount-buttons">
+                    <button class="amount-btn" data-amount="200">200 TSh</button>
+                    <button class="amount-btn" data-amount="500">500 TSh</button>
+                    <button class="amount-btn" data-amount="1000">1,000 TSh</button>
+                    <button class="amount-btn" data-amount="2000">2,000 TSh</button>
+                    <button class="amount-btn" data-amount="5000">5,000 TSh</button>
+                    <button class="amount-btn" data-amount="10000">10,000 TSh</button>
+                    <button class="amount-btn" data-amount="20000">20,000 TSh</button>
+                </div>
+
+                <p class="privacy-notice">Mchango ni wa hiari na unatolewa bila kutaja jina.</p>
+
+                <button id="contribute-btn" class="contribute-btn" disabled>Changia Sasa</button>
+            </div>
+
+            <div id="thank-you-section" class="thank-you-section hidden">
+                <div class="thank-you-message">
+                    <h2>Nashukuru sana kwa mchango wako. Umeonyesha moyo wa upendo na mshikamano.</h2>
+                </div>
+            </div>
+
+            <div class="share-section">
+                <h3>Shiriki</h3>
+                <div class="share-buttons">
+                    <button class="share-btn" id="whatsapp-share" aria-label="Shiriki kwa WhatsApp">
+                        WhatsApp
+                    </button>
+                    <button class="share-btn" id="telegram-share" aria-label="Shiriki kwa Telegram">
+                        Telegram
+                    </button>
+                    <button class="share-btn" id="facebook-share" aria-label="Shiriki kwa Facebook">
+                        Facebook
+                    </button>
+                    <button class="share-btn" id="copy-link" aria-label="Copy link">
+                        Copy link
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
