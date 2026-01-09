@@ -8,7 +8,7 @@ export default async function handler(req, res) {
         const { amount, phone } = req.body;
 
         // Validate amount
-        const validAmounts = [200, 500, 1000, 2000, 5000, 10000, 20000];
+        const validAmounts = [200, 500, 1000, 2000, 5000, 10000, 20000,50000];
         if (!amount || !validAmounts.includes(parseInt(amount))) {
             return res.status(400).json({ 
                 success: false, 
