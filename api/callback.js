@@ -1,57 +1,56 @@
 export default async function handler(req, res) {
-    // Only allow POST requests
     if (req.method !== 'POST') {
         return res.status(405).json({ message: 'Method not allowed' });
     }
 
     try {
-        // Get callback data from Fast Lipa
-        const callbackData = req.body;
+        const data = req.body;
 
-        // Verify payment status
-        // Fast Lipa typically sends: status, transaction_id, reference, etc.
-        if (callbackData.status === 'success' || callbackData.status === 'completed') {
-            // Payment successful
-            // You can log this, update database, send notifications, etc.
-            console.log('Payment successful:', {
-                transactionId: callbackData.transaction_id || callbackData.id,
-                reference: callbackData.reference,
-                amount: callbackData.amount,
-            });
-
-            // Return 200 OK to acknowledge receipt
-            return res.status(200).json({ 
-                success: true, 
-                message: 'Callback received' 
-            });
-        } else if (callbackData.status === 'failed' || callbackData.status === 'cancelled') {
-            // Payment failed
-            console.log('Payment failed:', {
-                transactionId: callbackData.transaction_id || callbackData.id,
-                reference: callbackData.reference,
-                reason: callbackData.reason || 'Unknown',
-            });
-
-            // Still return 200 OK to acknowledge receipt
-            return res.status(200).json({ 
-                success: false, 
-                message: 'Payment failed' 
-            });
-        } else {
-            // Unknown status
-            console.log('Unknown payment status:', callbackData);
-            return res.status(200).json({ 
-                success: false, 
-                message: 'Unknown status' 
-            });
+        if (!data || !data.status) {
+            console.error('Invalid callback data:', data);
+            return res.status(200).json({ success: false });
         }
 
+        // 🔐 OPTIONAL: Verify callback authenticity
+        // if (data.secret !== process.env.FASTLIPA_SECRET) {
+        //     console.error('Invalid callback secret');
+        //     return res.status(200).json({ success: false });
+        // }
+
+        const transactionId = data.transaction_id || data.id;
+
+        // 🛑 CHECK DUPLICATE TRANSACTION
+        // const exists = await db.findTransaction(transactionId);
+        // if (exists) return res.status(200).json({ success: true });
+
+        if (data.status === 'success' || data.status === 'completed') {
+            console.log('✅ Payment successful:', {
+                transactionId,
+                reference: data.reference,
+                amount: data.amount,
+            });
+
+            // await db.saveTransaction(...)
+            // await db.updateOrderStatus(...)
+
+            return res.status(200).json({ success: true });
+        }
+
+        if (data.status === 'failed' || data.status === 'cancelled') {
+            console.log('❌ Payment failed:', {
+                transactionId,
+                reference: data.reference,
+                reason: data.reason,
+            });
+
+            return res.status(200).json({ success: false });
+        }
+
+        console.log('⚠️ Unknown status:', data);
+        return res.status(200).json({ success: false });
+
     } catch (error) {
-        console.error('Error processing callback:', error);
-        // Still return 200 OK to prevent Fast Lipa from retrying
-        return res.status(200).json({ 
-            success: false, 
-            message: 'Callback processing error' 
-        });
+        console.error('Callback error:', error);
+        return res.status(200).json({ success: false });
     }
 }
