@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         contributeBtn.textContent = 'Inasubiri...';
 
         try {
-            const response = await fetch('/api/**/*.js', {
+            const response = await fetch('/api/pay', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
