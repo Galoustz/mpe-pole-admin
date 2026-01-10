@@ -2,7 +2,11 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/**/*.js",
+      "src": "api/fastlipa.js",
+      "use": "@vercel/node"
+    },
+      {
+      "src": "api/callback.js",
       "use": "@vercel/node"
     },
     {
