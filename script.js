@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         contributeBtn.textContent = 'Inasubiri...';
 
         try {
-            const response = await fetch('/api/pay', {
+            const response = await fetch('/api/callback.js, fastlipa.js', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
