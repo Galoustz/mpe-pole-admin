@@ -92,7 +92,7 @@ function ContributionPage() {
 
     let attempts = 0;
     const maxAttempts = 18;
-    const pollInterval = 5000;
+    const pollInterval = 3000;
 
     const tick = async () => {
       try {
